@@ -1,0 +1,75 @@
+<div class="row user-profile">
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-3">
+        <%= image_tag @user.avatar.medium.url %>
+        <% if @user.supervisor? %>
+          <div class="label label-danger"><%= t ".supervisor" %></div>
+        <% end %>
+      </div>
+      <div class="col-md-9">
+
+            <div class="row information">
+            <div class="col-md-12">
+            <div class="col-md-3"><strong><%= t ".name" %></strong></div>
+            <div class="col-md-9"><%= @user.name %></div>
+            </div>
+
+            <div class="col-md-12">
+            <div class="col-md-3"><strong><%= t ".email" %></strong></div>
+            <div class="col-md-9">@user.email</div>
+            </div>
+            </div>
+
+        <div class="row course-listing">
+  <div class="col-md-12">
+    <div class="name heading col-md-3">
+      Ruby On Rails
+    </div>
+    <div class="col-md-5">
+      Start date: 10/10/2015
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default">FINISHED</button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default btn-toggle">HIDE</button>
+    </div>
+  </div>
+
+  <div class="col-md-12 item">
+    <div class="name col-md-3">
+      Task 1
+    </div>
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default">FINISHED</button>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+
+  <div class="col-md-12 item">
+    <div class="name col-md-3">
+      Task 2
+    </div>
+    <div class="col-md-5">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default">FINISHED</button>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>
+
+<style>
+
+</style>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

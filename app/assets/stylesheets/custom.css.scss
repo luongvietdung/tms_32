@@ -184,3 +184,38 @@ legend {
   height: 150px;
   background-color: #76B45F;
 }
+.user-profile {
+  .label {
+    font-size: 18px;
+    margin-top: 15px;
+    display: block;
+  }
+  .name {
+    .heading {
+      font-weight: bold;
+    }
+    &:not(.heading) {
+      padding-left: 30px;
+    }
+  }
+  .row {
+    margin: 0px 0px 10px;
+  }
+  .col-md-12 {
+    padding: 10px 0px;
+  }
+  .information {
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    .col-md-12 {
+      &:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+  .course-listing {
+    background: #fff;
+    border: 1px dashed #ccc;
+  }
+}
