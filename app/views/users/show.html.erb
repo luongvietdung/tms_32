@@ -2,76 +2,73 @@
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-3">
-        <%= image_tag @user.avatar.medium.url %>
+      <%= image_tag @user.avatar.medium.url, class: "img-responsive" %>
         <% if @user.supervisor? %>
-          <div class="label label-danger"><%= t ".supervisor" %></div>
+        <div class="label label-danger"><%= t ".supervisor" %></div>
         <% end %>
       </div>
       <div class="col-md-9">
-        <ul>
-          <li class="list-group-item row">
+        <div class="row information">
+          <div class="col-md-12">
             <div class="col-md-3"><strong><%= t ".name" %></strong></div>
             <div class="col-md-9"><%= @user.name %></div>
-          </li>
-          <li class="list-group-item row">
-          <div class="col-md-3"><strong><%= t ".email" %></strong></div>
-            <div class="col-md-9">@user.email</div>
-          </li>
-        </ul>
-        <div class="row course-listing">
-  <div class="col-xs-12">
-    <div class="name heading col-xs-2">
-      Ruby On Rails
-    </div>
-    <div class="date col-xs-4">
-      Start date: 10/10/2015
-    </div>
-    <div class="course-progress col-xs-2">
-      <button class="btn btn-default">FINISHED</button>
-    </div>
-    <div class="btn-toggle col-xs-2">
-      <button class="btn btn-default">HIDE</button>
-    </div>
-  </div>
+          </div>
 
-  <div class="col-xs-12">
-    <div class="name col-xs-2">
-      Task 1
-    </div>
-    <div class="date col-xs-4">
-    </div>
-    <div class="course-progress col-xs-2">
-      <button class="btn btn-default">FINISHED</button>
-    </div>
-    <div class="btn-toggle col-xs-2">
-    </div>
-  </div>
+          <div class="col-md-12">
+            <div class="col-md-3"><strong><%= t ".email" %></strong></div>
+            <div class="col-md-9"><%= @user.email %></div>
+          </div>
+        </div>
 
-  <div class="col-xs-12">
-    <div class="name col-xs-2">
-      Task 2
-    </div>
-    <div class="date col-xs-4">
-    </div>
-    <div class="course-progress col-xs-2">
-      <button class="btn btn-default">FINISHED</button>
-    </div>
-    <div class="btn-toggle col-xs-2">
-    </div>
-  </div>
-</div>
+        <hr/>
+        <% @user.courses.each do |course| %>
+          <div class="row">
+            <div class="col-md-3 course-title">
+              <%= course.name %>
+            </div>
+            <div class="col-md-5">
+              <%= t ".start date" %>: <span class="date-format"> <%= course.start_date.strftime %> - <%= course.end_date.strftime %> </span>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-danger disabled"><%= t "application.buttons.trainning" %></button>
+            </div>
+          </div>
+          <% course.subjects.each do |subject| %>
+            <div class="row course-listing">
+              <div class="col-md-12">
+                <div class="name heading col-md-3">
+                  <strong><%= subject.name %></strong>
+                </div>
+                <div class="col-md-5">
+                  <%= t ".start date" %>: <span class="date-format"><%= course.start_date.strftime "%d %b" %> - <%= course.end_date.strftime "%d %b" %></span>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-success disabled"><%= t "application.buttons.finished" %></button>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-default btn-toggle"><%= t ".hide" %></button>
+                </div>
+              </div>
+              <% subject.tasks. each do|task| %>
+                <div class="col-md-12 item">
+                  <div class="name col-md-3">
+                    <%= task.name %>
+                  </div>
+                  <div class="col-md-5">
+                  </div>
+                  <div class="col-md-2">
+                    <button class="btn btn-default"> <%= t "application.buttons.finished" %></button>
+                  </div>
+                  <div class="col-md-2">
+                  </div>
+                </div>
+              <% end %>
 
-<style>
-  .name.heading {
-    font-weight: bold;
-  }
-  .name:not(.heading) {
-    padding-left: 30px;
-  }
-</style>
+
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
-  </div>
-  <div class="col-md-3">
   </div>
 </div>

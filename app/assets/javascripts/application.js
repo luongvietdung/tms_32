@@ -26,3 +26,10 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g")
   $(link).parent().before(content.replace(regexp, new_id));
 }
+
+$(document).ready(function(){
+  $(".user-profile").on("click", ".btn-toggle", function(){
+    var parent = $(this).parents(".course-listing");
+    parent.find(".item").toggleClass("hide");
+  })
+})
