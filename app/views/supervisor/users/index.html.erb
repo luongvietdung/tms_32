@@ -31,7 +31,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, user %></td>
         <td><%= user.email %></td>
         <td>
           <%= link_to t("application.buttons.view_progress"), supervisor_user_path(user),

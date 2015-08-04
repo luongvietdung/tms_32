@@ -12,7 +12,7 @@
     <tbody>
       <%= collection_check_boxes :course, :subject_ids, @subjects, :id, :name do |b| %>
         <tr>
-          <td><%= b.object.name %></td>
+          <td><%= link_to b.object.name, [:supervisor, b.object] %></td>
           <td><%= b.object.instruction.truncate 100 %></td>
           <td><%= b.check_box %></td>
         </tr>

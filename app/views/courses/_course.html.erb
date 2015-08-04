@@ -4,7 +4,7 @@
       <%= link_to course do %>
         <h3>
           <%= course.name %>
-          <% render "shared/course_closed", course: course %>
+          <%= render "shared/course_closed", course: course %>
         </h3>
       <% end %>
       <p>

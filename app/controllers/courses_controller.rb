@@ -14,6 +14,8 @@ class CoursesController < ApplicationController
     @members = @course.users.trainees
     @activities = @course.activities.latest.paginate page: params[:page],
       per_page: 5
+    @user_subjects = @course.user_subjects
+
     respond_to do |format|
       format.html
       format.js {render "shared/activities"}

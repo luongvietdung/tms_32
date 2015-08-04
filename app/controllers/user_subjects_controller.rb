@@ -1,9 +1,8 @@
 class UserSubjectsController < ApplicationController
-  before_action :load_user_subject, only: [:show, :update]
+  before_action :load_user_subject
   before_action :authenticate_user!
 
   def show
-    @subject = @user_subject.subject
     @tasks = @subject.tasks
     @user_id = @user_subject.user_id
     @tasks.each do |task|
@@ -25,13 +24,13 @@ class UserSubjectsController < ApplicationController
     else
       flash[:danger] = t "application.flash.user_subject_update_failed"
     end
-    redirect_to subject_user_subject_path @subject
+    redirect_to user_subject_path @user_subject
   end
 
   private
   def load_user_subject
-    @subject = Subject.find params[:subject_id]
-    @user_subject = @subject.user_subjects.find_by(user_id: current_user.id)
+    @user_subject = UserSubject.find params[:id]
+    @subject = @user_subject.subject
   end
 
   def user_subject_params

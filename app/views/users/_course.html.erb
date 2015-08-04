@@ -9,14 +9,18 @@
     </span>
   </div>
   <div class="col-md-2">
-    <% if course.tasks.count > 0 %>
-      <% if course.finished? @user %>
-        <button class="btn btn-success disabled"><%= t "application.buttons.finished" %></button>
-      <% else %>
-        <button class="btn btn-danger disabled"><%= t "application.buttons.training" %></button>
-      <% end %>
+    <% if course.closed? %>
+      <button class="btn button-close disabled"><%= t "application.buttons.closed" %></button>
     <% else %>
-      <button class="btn btn-warning disabled"><%= t "application.buttons.no_task" %></button>
+      <% if course.tasks.count > 0 %>
+        <% if course.finished? @user %>
+          <button class="btn btn-success disabled"><%= t "application.buttons.finished" %></button>
+        <% else %>
+          <button class="btn btn-danger disabled"><%= t "application.buttons.training" %></button>
+        <% end %>
+      <% else %>
+        <button class="btn btn-warning disabled"><%= t "application.buttons.no_task" %></button>
+      <% end %>
     <% end %>
   </div>
 </div>

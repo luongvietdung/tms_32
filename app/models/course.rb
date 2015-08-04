@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
     reject_if: proc {|a| a[:subject_id].blank? || a[:subject_id] == "0"}
 
   scope :latest, -> {order created_at: :desc}
-  scope :active, -> {where is_active: true}
+  scope :active, -> {where "is_active = ? OR closed = ?", true, true}
 
   accepts_nested_attributes_for :course_users, allow_destroy: true,
     reject_if: proc {|a| a[:user_id].blank? || a[:user_id] == "0"}

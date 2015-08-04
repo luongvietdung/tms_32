@@ -82,6 +82,8 @@ en:
       closed_failed: "Can't close course"
       subject_update_success: "Update subjects successfully"
       subject_update_failed: "Update subjects failed"
+      user_subject_updated: "Task has been finished successfully"
+      user_subject_update_failed: "Failed to finish task"
     messages:
       confirm: "Are you sure?"
       no_record: "No Record"

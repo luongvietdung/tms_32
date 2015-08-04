@@ -4,7 +4,7 @@
       <div class="block">
         <h1 class="center">
           <%= @course.name %>
-          <% render "shared/course_closed", course: @course %>
+          <%= render "shared/course_closed", course: @course %>
         </h1>
         <p>
           <%= t ".supervisors" %>
@@ -36,7 +36,8 @@
           <div class="col-md-12">
             <% @subjects.each do |subject| %>
               <div class="col-md-3">
-                <%= link_to subject_user_subject_path(subject) do %>
+                <%= link_to user_subject_path(find_user_subject(@user_subjects,
+                  current_user, subject)) do %>
                   <p><%= subject.name.truncate 50 %></p>
                 <% end %>
               </div>

@@ -2,7 +2,7 @@
 <div class="page-header">
   <h2>
     <%= @subject.name %>
-    <% render "shared/course_closed", course: @user_subject.course %>
+    <%= render "shared/course_closed", course: @user_subject.course %>
   </h2>
   <div class="progress">
     <div class="progress-bar progress-bar-success progress-bar-striped"
@@ -19,7 +19,7 @@
         <span class="label label-primary"><%= t "supervisor.subject.show.task" %></span>
       </legend>
       <% if @subject.tasks.count > 0 %>
-        <%= form_for @user_subject, url: subject_user_subject_path(@subject) do |f| %>
+        <%= form_for @user_subject, url: user_subject_path(@user_subject) do |f| %>
           <div class="row">
             <%= f.fields_for :user_tasks do |builder| %>
               <div class="col-lg-2">
@@ -41,7 +41,8 @@
           </div>
           <div class="row text-center">
             <%= f.submit t("application.buttons.submit"), class: "btn btn-danger",
-              disabled: percent_complete_subject(@user_subject) == "100%" || @user_subject.course.closed? %>
+              disabled: percent_complete_subject(@user_subject) == "100%" ||
+              @user_subject.course.closed? || current_user.supervisor? %>
           </div>
         <% end %>
       <% end %>

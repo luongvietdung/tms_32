@@ -81,7 +81,7 @@ class Supervisor::CoursesController < Supervisor::BaseController
   end
 
   def close_course
-    if @course.update_attributes closed: true
+    if @course.update_attributes closed: true, is_active: false
       flash[:success] = t "application.flash.closed_success",
         course: @course.name
     else

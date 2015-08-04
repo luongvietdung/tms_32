@@ -6,7 +6,7 @@ class UserSubject < ActiveRecord::Base
   has_many :activities, dependent: :nullify
   has_many :tasks, through: :user_tasks
 
-  validates :user_id, uniqueness: {scope: :subject_id}
+  validates :user_id, uniqueness: {scope: [:subject_id, :course_id]}
 
   scope :filter_by_subject, ->subject_id{where subject_id: subject_id}
   scope :filter_by_user, ->user_id{where user_id: user_id}
