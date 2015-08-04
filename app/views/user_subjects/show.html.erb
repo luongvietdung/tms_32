@@ -26,8 +26,9 @@
                 <% if builder.object.id.nil? %>
                   <div class="thumbnail text-center">
                     <h4><%= builder.object.task.name %></h4>
-                    <p><%= builder.check_box :task_id, {checked: false, disabled: @user_subject.course.closed?},
-                      builder.object.task.id %></p>
+                    <p><%= builder.check_box :task_id, {checked: false,
+                        disabled: @user_subject.course.closed? || current_user.supervisor?},
+                        builder.object.task.id %></p>
                     <%= builder.hidden_field :user_id, value: @user_id %>
                   </div>
                 <% else %>

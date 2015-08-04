@@ -81,12 +81,16 @@ class Supervisor::CoursesController < Supervisor::BaseController
   end
 
   def close_course
-    if @course.update_attributes closed: true, is_active: false
-      flash[:success] = t "application.flash.closed_success",
-        course: @course.name
+    unless @course.owned_by? current_user
+      flash[:danger] = t "application.flash.permission_denied"
     else
-      flash[:danger] = t "application.flash.closed_failed",
+      if @course.update_attributes closed: true, is_active: false
+        flash[:success] = t "application.flash.closed_success",
         course: @course.name
+      else
+        flash[:danger] = t "application.flash.closed_failed",
+        course: @course.name
+      end
     end
     redirect_to supervisor_courses_path
   end

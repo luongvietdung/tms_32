@@ -49,23 +49,21 @@
       edit_supervisor_course_path(course), class: "btn btn-primary",
       disabled: course.closed? %>
   </td>
-
-  <% if course.owned_by? current_user %>
-    <td>
-      <%= link_to t("application.buttons.delete"),
-        supervisor_course_path(course), method: :delete, class: "btn btn-danger",
-        data: {confirm: t("application.messages.confirm")} %>
-    </td>
-  <% end %>
-
   <td>
-    <% unless course.closed? %>
+    <% if course.closed? %>
+      <div class="btn btn-default disabled button-close"><%= t "application.buttons.closed" %></div>
+    <% elsif course.owned_by? current_user %>
       <%= link_to t("application.buttons.close"),
         supervisor_course_path(course, type: "close_course"),
         method: :patch, data: {confirm: t("application.messages.confirm")},
         class: "btn btn-warning" %>
-    <% else %>
-      <div class="btn btn-default disabled button-close"><%= t "application.buttons.closed" %></div>
+    <% end %>
+  </td>
+  <td>
+    <% if course.owned_by? current_user %>
+      <%= link_to t("application.buttons.delete"),
+        supervisor_course_path(course), method: :delete, class: "btn btn-danger",
+        data: {confirm: t("application.messages.confirm")} %>
     <% end %>
   </td>
 </tr>
